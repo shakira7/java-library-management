@@ -20,6 +20,35 @@ public class Books {
         return bookList.get(index);
     }
     
+    public Book borrowBook(int index){
+        if (bookList.get(index).getAvailability()){
+            bookList.get(index).removeQty();
+            return bookList.get(index);
+        }
+        else {
+            return null;
+        }
+    }
+    
+    public void returnBook(int index){
+        bookList.get(index).addQty();
+    }
+    
+    public void displayBooks(){
+        System.out.println("\n——— Displaying All Books");
+        
+        //check if list is not empty
+        if (!(bookList.isEmpty())){
+            
+            for (int i = 0; i < bookList.size(); i++){
+                System.out.println(bookList.get(i).getInfo());
+            }
+            
+            return;
+        }
+        System.out.println("| No book in list. ");
+    }
+    
     
     
 }

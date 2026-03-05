@@ -32,14 +32,10 @@ public class Book {
         return author;
     }
     
-    public String getAvailability(){
-        if (isAvailable){
-            return "Available";
-        }
-        else {
-            return "Not Available";
-        }
+    public boolean getAvailability(){
+        return isAvailable;
     }
+   
     
     public int getQty(){
         return bookQty;
@@ -50,11 +46,40 @@ public class Book {
                 " | Book ID: " + bookID +
                 "\n | Title: " + title +
                 "\n | Author: " + author +
-                "\n | Availability: " + getAvailability() + "\n");
+                "\n | Availability: " + getAvailability() + 
+                "\n | Quantity: " + bookQty + "\n");
     }
     
    // setter
     
+    public void setAvailability(){
+        if (bookQty > 0){
+            isAvailable = true;
+        }
+        else {
+            isAvailable = false;
+        }
+    }
     
+    public void setQty(int qty){
+        bookQty = qty;
+        setAvailability();
+    }
+        
+    public void addQty(){
+        bookQty += 1;
+        setAvailability();
+    }
+    
+    public void removeQty(){
+        if (isAvailable){
+            bookQty -= 1;
+        }
+        else {
+            System.out.println("——— WARNING! ———\n"
+                    + "Book is unavailable!\n");
+        }
+        setAvailability();
+    }
     
 }
