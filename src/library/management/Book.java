@@ -14,8 +14,13 @@ public class Book {
         this.title = title;
         this.author = author;
         this.bookID = idCounter++;
-        this.isAvailable = true;
         this.bookQty = qty;
+        if (qty == 0){
+            this.isAvailable = false;
+        }
+        else{
+            this.isAvailable = true;
+        }
     }
     
     // Getter
@@ -52,6 +57,14 @@ public class Book {
     
    // setter
     
+    public void setTitle(String title){
+        this.title = title;
+    }
+    
+    public void setAuthor(String author){
+        this.author = author;
+    }
+    
     public void setAvailability(){
         if (bookQty > 0){
             isAvailable = true;
@@ -71,13 +84,18 @@ public class Book {
         setAvailability();
     }
     
+    public void addQty(int qty){
+        bookQty += qty;
+        setAvailability();
+    }
+    
     public void removeQty(){
         if (isAvailable){
             bookQty -= 1;
         }
         else {
             System.out.println("——— WARNING! ———\n"
-                    + "Book is unavailable!\n");
+                    + "Book is already unavailable!\n");
         }
         setAvailability();
     }

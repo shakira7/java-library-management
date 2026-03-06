@@ -11,9 +11,25 @@ public class Books {
     }
     
     public void addBook(String title, String author, int qty) {
-        Book newBook = new Book(title, author, qty);
-        bookList.add(newBook);
         
+        Book newBook = new Book(title, author, qty);
+        
+        for (int i = 0; i < bookList.size(); i++){
+            if (bookList.get(i).getTitle().equalsIgnoreCase(title)
+                && bookList.get(i).getAuthor().equalsIgnoreCase(author)){
+                    System.out.println("Book already exists! Adding quantity...");
+                    bookList.get(i).addQty(qty);
+                    return;
+            }
+        }
+        
+        bookList.add(newBook);
+        System.out.println("Book successfully added!");
+        
+    }
+    
+    public int getSize(){
+        return bookList.size();
     }
     
     public Book getBook(int index){
